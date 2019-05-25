@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationForToasts", "NotificationForToasts.csproj", "{A9930A0E-1063-4E4C-AE10-06CBFA1C29FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationForToastsTests", "..\NotificationForToastsTests\NotificationForToastsTests.csproj", "{48243070-82BF-4382-8533-0D77B7E30459}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9930A0E-1063-4E4C-AE10-06CBFA1C29FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9930A0E-1063-4E4C-AE10-06CBFA1C29FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9930A0E-1063-4E4C-AE10-06CBFA1C29FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9930A0E-1063-4E4C-AE10-06CBFA1C29FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48243070-82BF-4382-8533-0D77B7E30459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48243070-82BF-4382-8533-0D77B7E30459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48243070-82BF-4382-8533-0D77B7E30459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48243070-82BF-4382-8533-0D77B7E30459}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DEA46C5-FAD4-46D2-A416-A3065C6ED873}
+	EndGlobalSection
+EndGlobal
