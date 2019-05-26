@@ -70,13 +70,12 @@ namespace NotificationForToasts
                 Image = global::NotificationForToasts.Properties.Resources.p_updaterss
             };
             this.缓存目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
-                Text = "缓存目录",
-                Image = global::NotificationForToasts.Properties.Resources.p_cachecat
+                Text = "缓存目录"//,Image = global::NotificationForToasts.Properties.Resources.p_cachecat
             };
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
-                Text = "关于我们",
-                Image = global::NotificationForToasts.Properties.Resources.p_about
+                Text = "关于我们"//,Image = global::NotificationForToasts.Properties.Resources.p_about
             };
+            
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
                 Text = "退出应用",
                 Image = global::NotificationForToasts.Properties.Resources.p_exit
@@ -90,9 +89,11 @@ namespace NotificationForToasts
 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.显示最新ToolStripMenuItem,
+            new System.Windows.Forms.ToolStripSeparator(),
             this.更新订阅ToolStripMenuItem,
             this.缓存目录ToolStripMenuItem,
             this.关于ToolStripMenuItem,
+            new System.Windows.Forms.ToolStripSeparator(),
             this.退出ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);

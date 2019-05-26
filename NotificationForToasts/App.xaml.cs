@@ -21,11 +21,13 @@ namespace NotificationForToasts
         {
             base.OnStartup(e);
 
+            //异常处理
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
 
-           string strProcessName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            //启动时检测是否已有程序启动，如果存在当前不启动
+            string strProcessName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
             Process[] processes = Process.GetProcesses();
             Process currentProcess = Process.GetCurrentProcess();
             Process searchProcess = null;
@@ -65,7 +67,7 @@ namespace NotificationForToasts
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             ProcessException(500, "未捕捉到线程异常", e.Exception, sender);
-            e.Handled = true;
+            //e.Handled = true;
         }
 
         /// <summary>
@@ -98,7 +100,7 @@ namespace NotificationForToasts
             }
         }
         #endregion
-
+         
         // 已经有了就把它激活，并将其窗口放置最前端
         private static void HandleRunningInstance(Process instance)
         {
