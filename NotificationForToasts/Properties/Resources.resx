@@ -160,4 +160,34 @@
   <data name="happy_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\happy_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="a_about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_about.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_cachecat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_cachecat.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_exit.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_shownew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_shownew.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_updaterss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_updaterss.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="p_about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\p_about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="p_cachecat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\p_cachecat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="p_exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\p_exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="p_shownew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\p_shownew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="p_updaterss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\p_updaterss.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -63,23 +63,23 @@ namespace NotificationForToasts
             this.显示最新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
                 Text = "显示最新",
                 Font = new Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold),
-                Image = global::NotificationForToasts.Properties.Resources.shownews
+                Image = global::NotificationForToasts.Properties.Resources.p_shownew
             };
             this.更新订阅ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
                 Text = "更新订阅",
-                Image = global::NotificationForToasts.Properties.Resources.update
+                Image = global::NotificationForToasts.Properties.Resources.p_updaterss
             };
             this.缓存目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
                 Text = "缓存目录",
-                Image = global::NotificationForToasts.Properties.Resources.cachecatelog
+                Image = global::NotificationForToasts.Properties.Resources.p_cachecat
             };
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
-                Text = "关于",
-                Image = global::NotificationForToasts.Properties.Resources.happy_on
+                Text = "关于我们",
+                Image = global::NotificationForToasts.Properties.Resources.p_about
             };
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
-                Text = "退出",
-                Image = global::NotificationForToasts.Properties.Resources.exit
+                Text = "退出应用",
+                Image = global::NotificationForToasts.Properties.Resources.p_exit
             };
 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;

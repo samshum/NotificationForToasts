@@ -305,6 +305,36 @@
   <ItemGroup>
     <None Include="Resources\happy_on.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a_exit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a_about.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a_updaterss.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a_cachecat.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a_shownew.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p_exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p_updaterss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p_cachecat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p_shownew.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
