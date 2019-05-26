@@ -43,7 +43,7 @@ namespace NotificationForToasts
             {
                 //type=0: 看全部， type=1 只看红标
                 //https://www.yicai.com/api/ajax/getbrieflist?page=1&pagesize=20&type=0
-                string url = "https://www.yicai.com/api/ajax/getbrieflist?page=1&pagesize=10&type=0" + Guid.NewGuid().ToString();
+                string url = "https://www.yicai.com/api/ajax/getbrieflist?page=1&pagesize=10&type=0&randomid=" + Guid.NewGuid().ToString();
                 //string url = "https://www.yicai.com/api/ajax/getbrieflist?page=1&pagesize=10&type=1&randomid=" + Guid.NewGuid().ToString();
                 _getResult = Encoding.UTF8.GetString(wc.DownloadData(new Uri(url)));
                 wc.Dispose();
