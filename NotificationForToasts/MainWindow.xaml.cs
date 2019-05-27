@@ -4,12 +4,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using NotificationForToasts.ShellHelpers;
 using Windows.Data.Xml.Dom;
@@ -26,6 +28,7 @@ namespace NotificationForToasts
         //"Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge"
         private CreateShortcut shelp = new CreateShortcut("Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge");
         private System.Timers.Timer _time = new System.Timers.Timer();
+        private ExceptionProcess _ep = new ExceptionProcess();
         private GetData getData = new GetData();
         public MainWindow()
         {
@@ -54,6 +57,8 @@ namespace NotificationForToasts
         private System.Windows.Forms.ToolStripMenuItem 更新订阅ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 显示最新ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 缓存目录ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 跟随系统启动ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 查看日志ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private void showNotificationIcon()
@@ -71,6 +76,13 @@ namespace NotificationForToasts
             };
             this.缓存目录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
                 Text = "缓存目录"//,Image = global::NotificationForToasts.Properties.Resources.p_cachecat
+            };
+            this.跟随系统启动ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem()
+            {
+                Text = "跟随系统启动"
+            };
+            this.查看日志ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
+                Text = "查看日志"
             };
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem() {
                 Text = "关于我们"//,Image = global::NotificationForToasts.Properties.Resources.p_about
@@ -92,6 +104,9 @@ namespace NotificationForToasts
             new System.Windows.Forms.ToolStripSeparator(),
             this.更新订阅ToolStripMenuItem,
             this.缓存目录ToolStripMenuItem,
+            this.查看日志ToolStripMenuItem,
+            this.跟随系统启动ToolStripMenuItem,
+            new System.Windows.Forms.ToolStripSeparator(),
             this.关于ToolStripMenuItem,
             new System.Windows.Forms.ToolStripSeparator(),
             this.退出ToolStripMenuItem});
@@ -101,6 +116,8 @@ namespace NotificationForToasts
             this.更新订阅ToolStripMenuItem.MouseUp += 更新订阅ToolStripMenuItem_MouseUp;
             this.显示最新ToolStripMenuItem.MouseUp += 显示最新ToolStripMenuItem_MouseUp;
             this.缓存目录ToolStripMenuItem.MouseUp += 缓存目录ToolStripMenuItem_MouseUp;
+            this.跟随系统启动ToolStripMenuItem.MouseUp += 跟随系统启动ToolStripMenuItem_MouseUp;
+            this.查看日志ToolStripMenuItem.MouseUp += 查看日志ToolStripMenuItem_MouseUp;
             this.关于ToolStripMenuItem.MouseUp += 关于ToolStripMenuItem_MouseUp;
             this.退出ToolStripMenuItem.MouseUp += 退出ToolStripMenuItem_MouseUp;
         }
@@ -121,6 +138,21 @@ namespace NotificationForToasts
         {
             Process.Start("https://github.com/samshum/NotificationForToasts");
         }
+        private void 查看日志ToolStripMenuItem_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (File.Exists(_ep.LogPath))
+            {
+                Process.Start(_ep.LogPath);
+            }
+        }
+
+        private void 跟随系统启动ToolStripMenuItem_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(getStartBySystem()))
+            {
+                setStartBySystem(true);
+            }
+        }
 
         private void 缓存目录ToolStripMenuItem_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -139,6 +171,67 @@ namespace NotificationForToasts
         {
             getData.UpdateNews();
         }
+        #endregion
+
+        #region 注册表操作相关
+        /// <summary>
+        /// 注册表路径
+        /// </summary>
+        private string keyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
+
+        /// <summary>
+        /// 注册表键名
+        /// </summary>
+        private string keyName = "NotificationForToasts";
+
+        /// <summary>
+        /// 设置是否随系统启动，true:跟随系统启动，false：反之
+        /// </summary>
+        /// <param name="isStart">设置是否随系统启动</param>
+        private bool setStartBySystem(bool isStart)
+        {
+            bool result = false;
+            try
+            {
+                string path = System.Windows.Forms.Application.ExecutablePath;
+                RegistryKey rk = Registry.LocalMachine;
+                RegistryKey rkmain = rk.CreateSubKey(keyPath);
+
+                if (isStart)
+                {
+                    rkmain.SetValue(keyName, path);
+                    result = true;
+                }
+                else
+                {
+                    rkmain.DeleteValue(keyName, false);
+                    result = false;
+                }
+                rkmain.Close();
+                rk.Close();
+            }
+            catch (UnauthorizedAccessException aes)
+            {
+                _ep.ExceptionReceive(304, "系统权限不足", aes, keyPath);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 获取当前注册表写入状态的值
+        /// </summary>
+        /// <returns></returns>
+        private string getStartBySystem()
+        {
+            string path = System.Windows.Forms.Application.ExecutablePath;
+            RegistryKey rk = Registry.LocalMachine;
+            RegistryKey rkopen = rk.OpenSubKey(keyPath);
+            string getResult = rkopen.GetValue(keyName) as String;
+            rk.Close();
+            rkopen.Close();
+            return getResult;
+        }
+
         #endregion
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -169,7 +262,10 @@ namespace NotificationForToasts
         /// <returns></returns>
         private bool isMatchTime()
         {
-            return DateTime.Now.DayOfWeek.Equals(DayOfWeek.Monday | DayOfWeek.Tuesday | DayOfWeek.Wednesday | DayOfWeek.Thursday | DayOfWeek.Friday) && DateTime.Now.Hour >= 9 && DateTime.Now.Hour <= 15;
+            bool isExTime = DateTime.Now.Hour >= 9 && DateTime.Now.Hour <= 15;
+            int dw = (int)(DateTime.Now.DayOfWeek);
+            bool isWorkday = dw>=1 && dw<=5;
+            return isExTime && isWorkday;
         }
 
         private List<NewsModel> replynews = new List<NewsModel>();
@@ -216,18 +312,22 @@ namespace NotificationForToasts
                 }
 
                 ShowNotification(newItem, shelp.AppID);
-                Console.WriteLine(JsonConvert.SerializeObject(newItem));
+                string getObjJson = JsonConvert.SerializeObject(newItem);
+                Console.WriteLine(getObjJson);
                 // 数据发生变化时，更新缓存
-                using (StreamWriter sw = new StreamWriter(new FileStream(objPath, FileMode.OpenOrCreate)))
+                using (StreamWriter sw = new StreamWriter(new FileStream(objPath, FileMode.OpenOrCreate), Encoding.UTF8))
                 {
                     sw.Write(JsonConvert.SerializeObject(replynews));
                     sw.Close();
                     sw.Dispose();
                 }
+                _ep.WriteLog("获取最新新闻", getObjJson);
             }
             else
             {
-                Console.WriteLine("Some as NewsModel" + DateTime.Now.ToString("HH:dd:ss"));
+                string relog = "Some as NewsModel" + DateTime.Now.ToString("HH:dd:ss");
+                Console.WriteLine(relog);
+                _ep.WriteLog("该消息已提醒过", relog);
             }
         }
 
@@ -267,7 +367,6 @@ namespace NotificationForToasts
                 },
                 Launch = string.Format("https://www.yicai.com/brief/{0}.html", item.id) //JsonConvert.SerializeObject(item)
             };
-
             var toastContent2 = new ToastContent()
             {
                 Visual = new ToastVisual()
@@ -309,20 +408,20 @@ namespace NotificationForToasts
                 },
                 Launch = string.Format("https://www.yicai.com/brief/{0}.html", item.id) //JsonConvert.SerializeObject(item)
             };
+            var toastContent3 = new ToastContent();
 
-            var toastContent = new ToastContent();
             if (isMatchTime())
             {
-                toastContent = toastContent1;
+                toastContent3 = toastContent1;
             }
             else
             {
-                toastContent = toastContent2;
+                toastContent3 = toastContent2;
             }
 
             // Get a toast XML template
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml(toastContent.GetContent());
+            doc.LoadXml(toastContent3.GetContent());
 
             var tn = new ToastNotification(doc)
             {

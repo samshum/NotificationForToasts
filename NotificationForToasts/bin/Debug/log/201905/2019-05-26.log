@@ -20,3 +20,37 @@ NotificationForToasts
    at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
 -2147352558
 
+【2019-05-26 03:27:59/未捕捉到异常】
+------404----------------------------------------------------------
+【2019-05-26 03:32:08/未捕捉到异常】
+------404----------------------------------------------------------
+【2019-05-26 03:32:32/未捕捉到异常】
+------404----------------------------------------------------------
+【2019-05-26 03:33:14/未捕捉到异常】
+------404----------------------------------------------------------
+【2019-05-26 03:33:34/未捕捉到异常】
+------404----------------------------------------------------------
+【2019-05-26 03:34:54/未捕捉到异常】
+------404----------------------------------------------------------
+【2019-05-26 03:50:06/系统权限不足】
+------304----------------------------------------------------------
+"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+Access to the registry key 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run' is denied.
+mscorlib
+   at Microsoft.Win32.RegistryKey.Win32Error(Int32 errorCode, String str)
+   at Microsoft.Win32.RegistryKey.CreateSubKeyInternal(String subkey, RegistryKeyPermissionCheck permissionCheck, Object registrySecurityObj, RegistryOptions registryOptions)
+   at Microsoft.Win32.RegistryKey.CreateSubKey(String subkey)
+   at NotificationForToasts.MainWindow.setStartBySystem(Boolean isStart) in D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\MainWindow.xaml.cs:line 183
+-2147024891
+
+【2019-05-26 03:50:14/系统权限不足】
+------304----------------------------------------------------------
+"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+Access to the registry key 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run' is denied.
+mscorlib
+   at Microsoft.Win32.RegistryKey.Win32Error(Int32 errorCode, String str)
+   at Microsoft.Win32.RegistryKey.CreateSubKeyInternal(String subkey, RegistryKeyPermissionCheck permissionCheck, Object registrySecurityObj, RegistryOptions registryOptions)
+   at Microsoft.Win32.RegistryKey.CreateSubKey(String subkey)
+   at NotificationForToasts.MainWindow.setStartBySystem(Boolean isStart) in D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\MainWindow.xaml.cs:line 183
+-2147024891
+
