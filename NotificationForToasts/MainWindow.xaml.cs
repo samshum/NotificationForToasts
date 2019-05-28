@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Timers;
@@ -269,7 +270,7 @@ namespace NotificationForToasts
         }
 
         private List<NewsModel> replynews = new List<NewsModel>();
-        private string objPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "newslist.json");
+        private string objPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "News.data");
         private void sendMsg()
         {
             // 9到15点刷新时间为10秒，其它刷新时间为1分钟
@@ -291,13 +292,13 @@ namespace NotificationForToasts
                 string objStrings = string.Empty;
                 if (File.Exists(objPath))
                 {
-                    using (StreamReader sr = new StreamReader(objPath))
+                    using (Stream sr = new FileStream(objPath, FileMode.Open, FileAccess.Read))
                     {
-                        objStrings = sr.ReadToEnd();
+                        BinaryFormatter bf = new BinaryFormatter();
+                        replynews = (List<NewsModel>)bf.Deserialize(sr);
                         sr.Close();
                         sr.Dispose();
                     }
-                    replynews = JsonConvert.DeserializeObject<List<NewsModel>>(objStrings);
                 }
             }
 
@@ -306,7 +307,7 @@ namespace NotificationForToasts
             if (newItem != null && replynews.Count(n => n.id == newItem.id)==0)
             {
                 replynews.Add(newItem);
-                if (replynews.Count >= 10)
+                if (replynews.Count > 10)
                 {
                     replynews.RemoveAt(0);
                 }
@@ -315,11 +316,12 @@ namespace NotificationForToasts
                 string getObjJson = JsonConvert.SerializeObject(newItem);
                 Console.WriteLine(getObjJson);
                 // 数据发生变化时，更新缓存
-                using (StreamWriter sw = new StreamWriter(new FileStream(objPath, FileMode.OpenOrCreate), Encoding.UTF8))
+                using (Stream sr = new FileStream(objPath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    sw.Write(JsonConvert.SerializeObject(replynews));
-                    sw.Close();
-                    sw.Dispose();
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(sr, replynews);
+                    sr.Close();
+                    sr.Dispose();
                 }
                 _ep.WriteLog("获取最新新闻", getObjJson);
             }
@@ -327,7 +329,7 @@ namespace NotificationForToasts
             {
                 string relog = "Some as NewsModel" + DateTime.Now.ToString("HH:dd:ss");
                 Console.WriteLine(relog);
-                _ep.WriteLog("该消息已提醒过", relog);
+                _ep.WriteLog(newItem.indexTitle, relog);
             }
         }
 

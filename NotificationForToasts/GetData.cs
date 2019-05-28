@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace NotificationForToasts
 {
+    [Serializable]
     public class NewsModel
     {
         public string url { get; set; }
@@ -90,7 +91,7 @@ namespace NotificationForToasts
                 //将内部部分包含标题去除。
                 item.newcontent = item.newcontent.Replace(item.indexTitle, "");
                 //去除HTML标识符
-                Regex reg = new Regex(@"<\s*[^>]*>([\s\S]+?)/>", RegexOptions.IgnoreCase);
+                Regex reg = new Regex(@"<\s*([\s\S]+?)/>", RegexOptions.IgnoreCase);
                 item.indexTitle = reg.Replace(item.indexTitle, "");
                 item.newcontent = reg.Replace(item.newcontent, "");
 

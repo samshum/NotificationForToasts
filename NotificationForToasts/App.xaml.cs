@@ -24,8 +24,9 @@ namespace NotificationForToasts
 
             //异常处理
             AppDomain.CurrentDomain.UnhandledException += ep.CurrentDomain_UnhandledException;
-            TaskScheduler.UnobservedTaskException += ep.TaskScheduler_UnobservedTaskException;
-            this.DispatcherUnhandledException += ep.App_DispatcherUnhandledException;
+            System.Windows.Forms.Application.ThreadException += ep.Application_ThreadException;
+            //TaskScheduler.UnobservedTaskException += ep.TaskScheduler_UnobservedTaskException;
+            //this.DispatcherUnhandledException += ep.App_DispatcherUnhandledException;
 
 
 
@@ -56,8 +57,6 @@ namespace NotificationForToasts
             }
         }
 
-        
-         
         // 已经有了就把它激活，并将其窗口放置最前端
         private static void HandleRunningInstance(Process instance)
         {

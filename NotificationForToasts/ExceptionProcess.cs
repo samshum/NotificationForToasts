@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NotificationForToasts
@@ -25,6 +26,10 @@ namespace NotificationForToasts
         {
             ExceptionReceive(500, "未捕捉到线程异常", e.Exception, sender);
             //e.Handled = true;
+        }
+        public void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            ExceptionReceive(501, "UI线程异常", e.Exception, sender);
         }
 
         public string LogFolder {
@@ -71,6 +76,7 @@ namespace NotificationForToasts
                 sr.Close();
                 sr.Dispose();
             }
+            throw ers;
         }
         #endregion
 
