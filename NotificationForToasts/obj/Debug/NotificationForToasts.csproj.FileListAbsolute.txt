@@ -58,8 +58,8 @@ D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForTo
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.csproj.CopyComplete
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.exe
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.pdb
-D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.csprojAssemblyReference.cache
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\bin\Debug\NotificationForToasts.exe.manifest
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\bin\Debug\NotificationForToasts.application
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.exe.manifest
 D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.application
+D:\My Documents\Visual Studio 2019\repos\NotificationForToasts\NotificationForToasts\obj\Debug\NotificationForToasts.csprojAssemblyReference.cache

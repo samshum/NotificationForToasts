@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -36,12 +37,22 @@ namespace NotificationForToasts
             InitializeComponent();
 
             this.ShowInTaskbar = false;
-            this.ResizeMode = ResizeMode.NoResize;
+            //this.ResizeMode = ResizeMode.NoResize;
             this.WindowStyle = WindowStyle.SingleBorderWindow;
             this.WindowState = WindowState.Minimized;
 
+            this.Closing += Window_Closing;
+            this.StateChanged += MainWindow_StateChanged;
+
             showNotificationIcon();
             shelp.Do("NotificationForToasts");
+        }
+
+        private void MainWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Minimized) {
+                this.Hide();
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -271,6 +282,8 @@ namespace NotificationForToasts
 
         private List<NewsModel> replynews = new List<NewsModel>();
         private string objPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "News.data");
+        private string getsavenumber = ConfigurationManager.AppSettings["savenumber"] as string;
+
         private void sendMsg()
         {
             // 9到15点刷新时间为10秒，其它刷新时间为1分钟
@@ -307,7 +320,10 @@ namespace NotificationForToasts
             if (newItem != null && replynews.Count(n => n.id == newItem.id)==0)
             {
                 replynews.Add(newItem);
-                if (replynews.Count > 10)
+                int savenumber = 10;
+                int.TryParse(getsavenumber, out savenumber);
+
+                if (replynews.Count > savenumber)
                 {
                     replynews.RemoveAt(0);
                 }

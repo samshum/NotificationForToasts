@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotificationForToasts"
         mc:Ignorable="d"
-        Title="实时财经消息推送" Height="287" Width="559" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="实时财经消息推送" Height="307" Width="559" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid Margin="0,0,0,9">
-        <Button Content="即时消息" HorizontalAlignment="Left" Margin="665,35,-644,0" VerticalAlignment="Top" Width="250" Height="80" Click="Button_Click"/>
-        <ListView Name="listView1" HorizontalAlignment="Left" Width="550" Margin="0,0,0,-8" Grid.ColumnSpan="1" PreviewMouseDoubleClick="ListView1_PreviewMouseDoubleClick">
+        <Button Content="即时消息" HorizontalAlignment="Left" Margin="-355,-25,0,0" VerticalAlignment="Top" Width="250" Height="80" Click="Button_Click"/>
+        <ListView Name="listView1" Margin="0,0,-4,-8" Grid.ColumnSpan="1" PreviewMouseDoubleClick="ListView1_PreviewMouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="id"  DisplayMemberBinding="{Binding Path=id}"/>
