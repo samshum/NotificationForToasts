@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("NotificationForToasts")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("About FinanceNews for YICAI.COM")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("ASIMS Inc,.")]
 [assembly: AssemblyProduct("NotificationForToasts")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
